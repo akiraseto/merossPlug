@@ -4,6 +4,22 @@
 MerossのIOT電源タップ(4口+USB モデル番号:mss425f)をコードで制御する
 
 ## Requirement
+- python
+
+```bash
+pip install requests
+
+```
+
+- mitmproxy
+configのip_address,messageId,sign,timestampの変数を取得するのに必要。
+
+```bash
+#mitmproxy
+pip install mitmproxy
+
+```
+
 
 ## Installation
 ```bash
@@ -12,22 +28,24 @@ mv config_sample.py config.py
 
 リネームしたconfig.pyに値を設定して下さい。
 
-
 ## Usage
 
-
-## Note
-
-### 調査
-mitmproxyを使いMerossのiOSアプリと電源タップ間にman in the middleしてapiを調べた
-
 ```bash
-#mitmproxy
-pip install mitmproxy
+
+# 1番口をオン
+python main.py 1 on
+
+# 全部をオフ
+python main.py 0 off
 
 ```
 
-### jsonファイル
+- 第1引数: タップ口番号(1-5, all:0)
+- 第2引数: on off 通電のオン・オフ
+
+
+## Note
+mitmproxyを使いMerossのiOSアプリと電源タップ間にman in the middleしてapi,jsonを調査
 
 ```json
 
@@ -60,7 +78,7 @@ pip install mitmproxy
 
 triggerSrcと、payload内以外はmitmで取得したものをそのまま使うことで動作する。
 
-#### 使用例
+## PS
 Apple Homeに連動させて、iPhone,AppleWatchを用いて使用している
 Apple Homeとの連携には、Homebridgeを使用
 

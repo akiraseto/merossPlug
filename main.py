@@ -1,13 +1,26 @@
 import requests
 import json
+import sys
 
 import config
 
+args = sys.argv
+
+channel = None
+onoff = None
+
+if len(args) <= 2:
+    print('2 arguments are required.')
+    exit()
+
+channel = args[1]
+if args[2] == "on":
+    onoff = 1
+elif args[2] == "off":
+    onoff = 0
+
 app_name = "merossPlug"
 URL = "http://{}/config".format(config.ip_address)
-
-channel = 1
-onoff = 1
 
 header = {
     "from": URL,
@@ -31,3 +44,5 @@ data = {"header": header, "payload": payload}
 headers = {'content-type': 'application/json'}
 
 response = requests.request("POST", URL, data=json.dumps(data), headers=headers)
+
+print(response)
