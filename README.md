@@ -99,3 +99,5 @@ npm i homebridge
 ## License
 
 [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+
+
